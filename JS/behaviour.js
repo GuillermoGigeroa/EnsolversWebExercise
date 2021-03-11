@@ -24,20 +24,24 @@ class folder {
     }
 }
 
-function addItem_Folder(item){
-    this.items.push(item);
+function addItem_Folder(...item){
+    this.items.push(...item);
 }
 
 function changeName_Folder(name){
     this.name = name;
 }
 
+var folders = new Array();
+
 $(function(){
-    var item1 = new item("Nombre de item 1",false);
-    var item2 = new item("Nombre de item 2",true);
+    var item1 = new item("Item1",false);
+    var item2 = new item("Item2",true);
+    var item3 = new item("Item3",true);
+    var item4 = new item("Item4",false);
     var folder1 = new folder("Carpeta1");
-    folder1.addItem(item1);
-    folder1.addItem(item2);
+    folder1.addItem(item1, item2, item3, item4);
+    folders.push(folder1);
     mostrarCarpeta(folder1);
 });
 
