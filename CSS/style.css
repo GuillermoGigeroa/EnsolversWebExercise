@@ -2,3 +2,92 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+#AppContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    width: 100%;
+}
+
+#foldersBox {
+    background-color: whitesmoke;
+    width: fit-content;
+    border-style: solid;
+    border-width: .2em;
+    border-color: black;
+    padding: 2em;
+    border-radius: .5em;
+}
+
+#foldersBox ul {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+#folders {
+    padding: 1em;
+}
+
+#folders li {
+    list-style: disc;
+}
+
+.folders1{
+    display: flex;
+    align-items: left;
+    flex-direction: row !important;
+}
+
+.folders1 li{
+    list-style: none !important;
+    padding: .2em;
+}
+
+.folders1 button{
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: lightseagreen;
+    padding-left: .3em;
+    padding-right: .3em;
+}
+
+.folders2{
+    padding-top: 1em;
+    display: flex;
+    align-items: left;
+    flex-direction: row !important;
+}
+
+.folders2 li{
+    list-style: none !important;
+    padding: .2em;
+}
+
+input {
+    border-style: solid;
+    border-radius: .2em;
+}
+
+button {
+    border-style: solid;
+    border-radius: .2em;
+    padding-left: .8em;
+    padding-right: .8em;
+    cursor: pointer;
+}
