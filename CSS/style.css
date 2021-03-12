@@ -78,6 +78,28 @@ ul {
     list-style: none;
 }
 
+#loginBox{
+    background-color: whitesmoke;
+    width: fit-content;
+    border-style: solid;
+    border-width: .2em;
+    border-color: black;
+    padding: 2em;
+    border-radius: .5em;
+}
+
+#loginBox ul {
+    padding-top: .5em;
+}
+
+.grey {
+    color: grey;
+}
+
+.complete{
+    width: 100%;
+}
+
 #editTaskBox {
     background-color: whitesmoke;
     width: fit-content;
