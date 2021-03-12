@@ -1,17 +1,17 @@
-class item {
+class task {
     constructor(text, check) {
         this.text = text;
         this.check = check;
-        this.changeText = changeText_Item;
-        this.changeStatus = changeStatus_Item;
+        this.changeText = changeText_Task;
+        this.changeStatus = changeStatus_Task;
     }
 };
 
-function changeText_Item(text) {
+function changeText_Task(text) {
     this.text = text;
 }
 
-function changeStatus_Item(check) {
+function changeStatus_Task(check) {
     this.check = check;
 }
 
@@ -53,22 +53,22 @@ function addNewFolder(folder){
 }
 
 $(function(){
-    var item1 = new item("Item1",false);
-    var item2 = new item("Item2",true);
-    var item3 = new item("Item3",true);
-    var item4 = new item("Item4",false);
-    var folder1 = new folder("Carpeta1");
-    var folder2 = new folder("Carpeta2");
-    var folder3 = new folder("Carpeta3");
-    folder1.addItem(item1, item2, item3, item4);
-    folder2.addItem(item2, item1, item4, item3);
-    folder3.addItem(item4, item3, item2, item1);
+    var task1 = new task("task1",false);
+    var task2 = new task("task2",true);
+    var task3 = new task("task3",true);
+    var task4 = new task("task4",false);
+    var folder1 = new folder("folder1");
+    var folder2 = new folder("folder2");
+    var folder3 = new folder("folder3");
+    folder1.addItem(task1, task2, task3, task4);
+    folder2.addItem(task2, task1, task4, task3);
+    folder3.addItem(task4, task3, task2, task1);
     addNewFolder(folder1);
     addNewFolder(folder2);
     addNewFolder(folder3);
     folders.forEach(folder => {
         if(folder.active){
-            mostrarCarpeta(folder);
+            showFolderConsole(folder);
         }
     });
     loadFolders();
@@ -88,14 +88,14 @@ function loadFolders(){
     });
 }
 
-//Develop testing
-function mostrarCarpeta(carpeta){
+//Developer test on console
+function showFolderConsole(carpeta){
     console.log("---------------------------------------------------");
-    console.log("Nombre de carpeta: ",carpeta.name);
+    console.log("Folder name: ",carpeta.name);
     console.log("---------------------------------------------------");
     $.each(carpeta.items, function() { 
-        console.log("Texto: ",this.text);         
-        console.log("Estado: ",this.check);         
+        console.log("Task: ",this.text);         
+        console.log("Checked: ",this.check);         
     });
     console.log("---------------------------------------------------");
 }
