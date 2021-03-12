@@ -9,11 +9,11 @@
     <script src="./JS/jquery-3.5.1.js"></script>
 </head>
 <body>
-    <button id="toggleViewFolders1">Return to folders</button>
+    <button id="loadExamples">Load examples</button>
     <div id="AppContainer">
         <div id="foldersBox">
             <ul>
-                <li>
+                <li class="center">
                     Folders
                 </li>
             </ul>
@@ -32,7 +32,7 @@
         </div>
         <div id="insideFoldersBox">
             <ul>
-                <li id="folderName">
+                <li id="folderName" class="center">
                     Folders
                 </li>
             </ul>
@@ -45,6 +45,31 @@
                 <li>
                     <button id="newTask">
                         Add
+                    </button>
+                </li>
+            </ul>
+            <div class="center">
+                <button id="returnToFolders">
+                    Return to folders
+                </button>
+            </div>
+        </div>
+        <div id="editTaskBox">
+            <ul>
+                <li id="taskName">
+                    Edit task: "XXXX"
+                </li>
+            </ul>
+            <ul class="folders2">
+                <li>
+                    <input type="text" placeholder="New task name" id="taskTextEdit">
+                </li>
+                <li>
+                    <button id="editTask">
+                        Edit
+                    </button>
+                    <button id="cancelEditTask">
+                        Cancel
                     </button>
                 </li>
             </ul>

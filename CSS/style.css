@@ -23,6 +23,14 @@ ul {
     width: 100%;
 }
 
+.center {
+    text-align: center;
+}
+
+#returnToFolders {
+    margin-top: .5em;
+}
+
 #foldersBox {
     background-color: whitesmoke;
     width: fit-content;
@@ -68,6 +76,25 @@ ul {
 }
 
 #insideFolder li {
+    list-style: none;
+}
+
+#editTaskBox {
+    background-color: whitesmoke;
+    width: fit-content;
+    border-style: solid;
+    border-width: .2em;
+    border-color: black;
+    padding: 2em;
+    border-radius: .5em;
+}
+
+#taskName {
+    padding: 1em;
+    text-align: center;
+}
+
+#taskName li {
     list-style: none;
 }
 
