@@ -1,3 +1,10 @@
+$(function(){
+    toggleLoginMenu(true);
+    toggleViewFolders1Menu(false);
+    toggleViewFolders2Menu(false);
+    toggleViewFolders3Menu(false);
+});
+
 var idTask = 0;
 
 class task {
@@ -170,12 +177,6 @@ function addNewFolder(...folder){
     folders.push(...folder);
 }
 
-$(function(){
-    toggleViewFolders1Menu(true);
-    toggleViewFolders2Menu(false);
-    toggleViewFolders3Menu(false);
-});
-
 function loadFolders1(){
     $("#folders").empty();
     folders.forEach(folder => {
@@ -209,6 +210,36 @@ $("#newFolder").click(function() {
         loadFolders1();
     }
 });
+
+function toggleLoginMenu(boolean){
+    if(boolean){
+        $("#loginBox").show();
+        $("#wrongUserPass").hide();
+        $("#loadExamples").hide();
+    }
+    else{
+        $("#loginBox").hide();  
+        $("#loadExamples").show();
+    }
+}
+
+$("#login").click(function() { 
+    login();
+});
+
+function login(){
+    let user = $("#user").val();
+    let password = $("#password").val();
+    $("#user").val("");
+    $("#password").val("");
+    if(user.trim() == "admin" && password.trim() == "admin"){
+        toggleViewFolders1Menu(true);
+        toggleLoginMenu(false);
+    }
+    else{
+        $("#wrongUserPass").show();
+    }
+}
 
 function toggleViewFolders1Menu(boolean){
     if(boolean){
