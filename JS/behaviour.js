@@ -15,17 +15,31 @@ function changeStatus_Item(check) {
     this.check = check;
 }
 
+var idFolder = 0;
+
 class folder {
     constructor(name) {
         this.name = name;
         this.items = new Array();
         this.addItem = addItem_Folder;
         this.changeName = changeName_Folder;
+        this.active = true;
+        this.id = idFolder;
+        idFolder++;
     }
 }
 
 function addItem_Folder(...item){
     this.items.push(...item);
+}
+
+function removeFolder(folderID){
+    folders.forEach(folder => {
+        if(folderID == folder.id){
+            folder.active = false;
+        }
+    });
+    loadFolders();
 }
 
 function changeName_Folder(name){
@@ -53,19 +67,24 @@ $(function(){
     addNewFolder(folder2);
     addNewFolder(folder3);
     folders.forEach(folder => {
-        mostrarCarpeta(folder);
+        if(folder.active){
+            mostrarCarpeta(folder);
+        }
     });
     loadFolders();
 });
 
 function loadFolders(){
+    $("#folders").empty();
     folders.forEach(folder => {
+        if(folder.active){
         $("#folders").append(
             "<li><ul class=\"folders1\"><li>"
             +folder.name
             +"</li><li><button>View Items</button></li>"
-            +"<li><button>Remove</button></li>"
+            +"<li><button onclick=\"removeFolder("+folder.id+")\">Remove</button></li>"
             +"</ul></li>");
+        }
     });
 }
 
@@ -80,6 +99,13 @@ function mostrarCarpeta(carpeta){
     });
     console.log("---------------------------------------------------");
 }
+
+$("#newFolder").click(function() {
+    var folderName = $("#folderName").val();
+    var newFolder = new folder(folderName);
+    addNewFolder(newFolder);
+    loadFolders();
+});
 
 $("#toggleViewFolders").click(function() { 
     $("#foldersBox").toggle();
