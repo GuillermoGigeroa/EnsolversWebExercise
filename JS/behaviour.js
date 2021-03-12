@@ -5,36 +5,27 @@ $(function(){
     toggleViewFolders3Menu(false);
 });
 
+var folders = new Array();
 var idTask = 0;
+var idFolder = 0;
+var activeFolderID;
+var activeTaskID;
 
 class task {
     constructor(text, check) {
         this.text = text;
         this.check = check;
-        this.changeText = changeText_Task;
-        this.changeStatus = changeStatus_Task;
         this.active = true;
         this.id = idTask;
         idTask++;
     }
 };
 
-function changeText_Task(text) {
-    this.text = text;
-}
-
-function changeStatus_Task(check) {
-    this.check = check;
-}
-
-var idFolder = 0;
-
 class folder {
     constructor(name) {
         this.name = name;
         this.tasks = new Array();
         this.addTask = addTask_Folder;
-        this.changeName = changeName_Folder;
         this.active = true;
         this.id = idFolder;
         idFolder++;
@@ -53,8 +44,6 @@ function removeFolder(folderID){
     });
     loadFolders1();
 }
-
-var activeFolderID;
 
 function viewFolder(folderID){
     toggleViewFolders1Menu(false);
@@ -104,8 +93,6 @@ function changeStatus(taskID,folderID){
     });
 }
 
-var activeTaskID;
-
 function editTask(taskID,folderID){
     activeTaskID = taskID;
     toggleViewFolders1Menu(false);
@@ -121,31 +108,6 @@ function editTask(taskID,folderID){
         }
     });
 }
-
-$("#editTask").click(function() { 
-    var edit = $("#taskTextEdit").val();
-    if(edit.trim() == ""){
-        $("#taskTextEdit").attr("placeholder", "Enter the task name");
-    }
-    else{
-        folders.forEach(folder => {
-            if(activeFolderID == folder.id){
-                (folder.tasks).forEach(task => {
-                    if(activeTaskID == task.id){
-                        task.text = edit;
-                    }
-                });
-            }
-        });
-        $("#taskTextEdit").attr("placeholder", "New task name");
-    }
-    backToInsideFolders();
-    $("#taskTextEdit").val("");
-});
-
-$("#cancelEditTask").click(function() { 
-    backToInsideFolders();
-});
 
 function backToInsideFolders(){
     toggleViewFolders1Menu(false);
@@ -166,12 +128,6 @@ function removeTask(taskID,folderID){
     });
     loadFolders2(folderID);
 }
-
-function changeName_Folder(name){
-    this.name = name;
-}
-
-var folders = new Array();
 
 function addNewFolder(...folder){
     folders.push(...folder);
@@ -197,20 +153,6 @@ function loadFolders2(){
     toggleViewFolders2Menu(true);
 }
 
-$("#newFolder").click(function() {
-    var folderName = $("#newFolderName").val();
-    if(folderName.trim() == ""){
-        $("#newFolderName").attr("placeholder", "Enter the folder name");
-    }
-    else{
-        var newFolder = new folder(folderName);
-        addNewFolder(newFolder);
-        $("#newFolderName").val("");
-        $("#newFolderName").attr("placeholder", "New folder");
-        loadFolders1();
-    }
-});
-
 function toggleLoginMenu(boolean){
     if(boolean){
         $("#loginBox").show();
@@ -222,10 +164,6 @@ function toggleLoginMenu(boolean){
         $("#loadExamples").show();
     }
 }
-
-$("#login").click(function() { 
-    login();
-});
 
 function login(){
     let user = $("#user").val();
@@ -267,12 +205,6 @@ function toggleViewFolders3Menu(boolean){
         $("#editTaskBox").hide();  
     }
 }
-
-$("#returnToFolders").click(function() { 
-    toggleViewFolders1Menu(true);
-    toggleViewFolders2Menu(false);
-    toggleViewFolders3Menu(false);
-});
 
 function loadInitialData(){
     var task1 = new task("Task1",false);
@@ -317,4 +249,53 @@ $("#newTask").click(function() {
 
 $("#loadExamples").click(function (e) { 
     loadInitialData();
+});
+
+$("#returnToFolders").click(function() { 
+    toggleViewFolders1Menu(true);
+    toggleViewFolders2Menu(false);
+    toggleViewFolders3Menu(false);
+});
+
+$("#login").click(function() { 
+    login();
+});
+
+$("#newFolder").click(function() {
+    var folderName = $("#newFolderName").val();
+    if(folderName.trim() == ""){
+        $("#newFolderName").attr("placeholder", "Enter the folder name");
+    }
+    else{
+        var newFolder = new folder(folderName);
+        addNewFolder(newFolder);
+        $("#newFolderName").val("");
+        $("#newFolderName").attr("placeholder", "New folder");
+        loadFolders1();
+    }
+});
+
+$("#editTask").click(function() { 
+    var edit = $("#taskTextEdit").val();
+    if(edit.trim() == ""){
+        $("#taskTextEdit").attr("placeholder", "Enter the task name");
+    }
+    else{
+        folders.forEach(folder => {
+            if(activeFolderID == folder.id){
+                (folder.tasks).forEach(task => {
+                    if(activeTaskID == task.id){
+                        task.text = edit;
+                    }
+                });
+            }
+        });
+        $("#taskTextEdit").attr("placeholder", "New task name");
+    }
+    backToInsideFolders();
+    $("#taskTextEdit").val("");
+});
+
+$("#cancelEditTask").click(function() { 
+    backToInsideFolders();
 });
