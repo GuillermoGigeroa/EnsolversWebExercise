@@ -298,4 +298,5 @@ $("#editTask").click(function() {
 
 $("#cancelEditTask").click(function() { 
     backToInsideFolders();
+    $("#taskTextEdit").val("");
 });

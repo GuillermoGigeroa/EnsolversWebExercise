@@ -156,6 +156,18 @@ ul {
     padding: .2em;
 }
 
+.folders3{
+    padding-top: 1em;
+    display: flex;
+    align-items: center;
+    flex-direction: column !important;
+}
+
+.folders3 li{
+    list-style: none !important;
+    padding: .2em;
+}
+
 input {
     border-style: solid;
     border-radius: .2em;
