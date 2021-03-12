@@ -39,6 +39,14 @@ ul {
     align-items: left;
 }
 
+#folders {
+    padding: 1em;
+}
+
+#folders li {
+    list-style: disc;
+}
+
 #insideFoldersBox {
     background-color: whitesmoke;
     width: fit-content;
@@ -55,12 +63,12 @@ ul {
     align-items: left;
 }
 
-#folders {
+#insideFolder {
     padding: 1em;
 }
 
-#folders li {
-    list-style: disc;
+#insideFolder li {
+    list-style: none;
 }
 
 .folders1{

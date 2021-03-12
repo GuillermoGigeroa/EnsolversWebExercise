@@ -47,6 +47,8 @@ function removeFolder(folderID){
     loadFolders1();
 }
 
+var activeFolderID;
+
 function viewFolder(folderID){
     toggleViewFolders1Menu();
     toggleViewFolders2Menu();
@@ -56,18 +58,44 @@ function viewFolder(folderID){
             activeFolder = thisFolder;
         }
     });
+    activeFolderID = activeFolder.id;
     $("#folderName").text("Folders > "+activeFolder.name);
     $("#insideFolder").empty();
     (activeFolder.tasks).forEach(task => {
         if(task.active){
-            $("#insideFolder").append(
-                "<li><ul class=\"folders1\"><li>"
-                +task.text
-                +"</li><li><button onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
-                +"<li><button onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
-                +"</ul></li>");
+            if(task.check){
+                $("#insideFolder").append(
+                    "<li><ul class=\"folders1\"><li>"
+                    +"<input type=\"checkbox\" name=\"\" onChange=\"changeStatus("+task.id+","+activeFolder.id+")\" checked></input></li><li>"
+                    +task.text
+                    +"</li><li><button onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
+                    +"<li><button onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
+                    +"</ul></li>");
+            }else{
+                $("#insideFolder").append(
+                    "<li><ul class=\"folders1\"><li>"
+                    +"<input type=\"checkbox\" name=\"\" onChange=\"changeStatus("+task.id+","+activeFolder.id+")\"></input></li><li>"
+                    +task.text
+                    +"</li><li><button onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
+                    +"<li><button onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
+                    +"</ul></li>");
+            }
+            
         }
     });
+}
+
+function changeStatus(taskID,folderID){
+    folders.forEach(folder => {
+        if(folderID == folder.id){
+            (folder.tasks).forEach(task => {
+                if(taskID == task.id){
+                    task.check = !task.check;
+                }
+            });
+        }
+    });
+    
 }
 
 function editTask(taskID,folderID){
@@ -93,8 +121,8 @@ function changeName_Folder(name){
 
 var folders = new Array();
 
-function addNewFolder(folder){
-    folders.push(folder);
+function addNewFolder(...folder){
+    folders.push(...folder);
 }
 
 $(function(){
@@ -116,22 +144,10 @@ function loadFolders1(){
     });
 }
 
-function loadFolders2(folderID){
-    $("#insideFolder").empty();
-    folders.forEach(folder => {
-        if(folderID == folder.id){
-            (folder.tasks).forEach(task => {
-                if(task.active){
-                $("#insideFolder").append(
-                    "<li><ul class=\"folders1\"><li>"
-                    +task.text
-                    +"</li><li><button onclick=\"editTask("+task.id+","+folder.id+")\">Edit</button></li>"
-                    +"<li><button onclick=\"removeTask("+task.id+","+folder.id+")\">Remove</button></li>"
-                    +"</ul></li>");
-                }
-            });
-        }
-    });
+function loadFolders2(){
+    viewFolder(activeFolderID);
+    toggleViewFolders1Menu();
+    toggleViewFolders2Menu();
 }
 
 //Developer test on console
@@ -150,6 +166,7 @@ $("#newFolder").click(function() {
     var folderName = $("#newFolderName").val();
     var newFolder = new folder(folderName);
     addNewFolder(newFolder);
+    $("#newFolderName").val("");
     loadFolders1();
 });
 
@@ -171,27 +188,25 @@ function restartButton(){
 }
 
 function loadInitialData(){
-    var task1 = new task("task1",false);
-    var task2 = new task("task2",true);
-    var task3 = new task("task3",true);
-    var task4 = new task("task4",false);
-    var task5 = new task("task5",false);
-    var task6 = new task("task6",false);
-    var task7 = new task("task7",false);
-    var task8 = new task("task8",false);
-    var task9 = new task("task9",false);
-    var task10 = new task("task10",false);
-    var task11 = new task("task11",false);
-    var task12 = new task("task12",false);
-    var folder1 = new folder("folder1");
-    var folder2 = new folder("folder2");
-    var folder3 = new folder("folder3");
+    var task1 = new task("Task1",false);
+    var task2 = new task("Task2",true);
+    var task3 = new task("Task3",true);
+    var task4 = new task("Task4",false);
+    var task5 = new task("Task5",true);
+    var task6 = new task("Task6",false);
+    var task7 = new task("Task7",false);
+    var task8 = new task("Task8",true);
+    var task9 = new task("Task9",false);
+    var task10 = new task("Task10",true);
+    var task11 = new task("Task11",false);
+    var task12 = new task("Task12",true);
+    var folder1 = new folder("Folder1");
+    var folder2 = new folder("Folder2");
+    var folder3 = new folder("Folder3");
     folder1.addTask(task1, task2, task3, task4);
     folder2.addTask(task5, task6, task7, task8);
     folder3.addTask(task9, task10, task11, task12);
-    addNewFolder(folder1);
-    addNewFolder(folder2);
-    addNewFolder(folder3);
+    addNewFolder(folder1, folder2, folder3);
     folders.forEach(folder => {
         if(folder.active){
             showFolderConsole(folder);
@@ -199,3 +214,15 @@ function loadInitialData(){
     });
     loadFolders1();
 }
+
+$("#newTask").click(function() { 
+    var taskText = $("#taskText").val();
+    var newTask = new task(taskText, false);
+    folders.forEach(folder => {
+        if(activeFolderID == folder.id){
+            folder.addTask(newTask);
+        }
+    });
+    $("#taskText").val("");
+    loadFolders2(activeFolderID);
+});
