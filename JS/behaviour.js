@@ -181,10 +181,12 @@ function login(){
 
 function toggleViewFolders1Menu(boolean){
     if(boolean){
-        $("#foldersBox").show();  
+        $("#foldersBox").show();
+        $("#loadExamples").show();
     }
     else{
-        $("#foldersBox").hide();  
+        $("#foldersBox").hide();
+        $("#loadExamples").hide();
     }
 }
 

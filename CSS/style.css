@@ -43,6 +43,9 @@ ul {
     border-color: black;
     padding: 2em;
     border-radius: .5em;
+    -webkit-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
 }
 
 #foldersBox ul {
@@ -67,6 +70,9 @@ ul {
     border-color: black;
     padding: 2em;
     border-radius: .5em;
+    -webkit-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
 }
 
 #insideFoldersBox ul {
@@ -91,6 +97,9 @@ ul {
     border-color: black;
     padding: 2em;
     border-radius: .5em;
+    -webkit-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
 }
 
 #loginBox ul {
@@ -113,6 +122,15 @@ ul {
     border-color: black;
     padding: 2em;
     border-radius: .5em;
+    -webkit-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+}
+
+#loadExamples {
+    -webkit-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 5px rgba(0,0,0,0.75);
 }
 
 #taskName {
