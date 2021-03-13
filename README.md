@@ -6,4 +6,4 @@ Used technology:
 
 For the login system, use user "admin" and password "admin".
 
-To open the webapp, open the index.html file with your preferred browser.
+To open the web application, open the index.html file with your preferred browser or go to https://guillermogigeroa.github.io/EnsolversWebExercise/
