@@ -64,16 +64,16 @@ function viewFolder(folderID){
                     "<li><ul class=\"folders1\"><li>"
                     +"<input type=\"checkbox\" name=\"\" onChange=\"changeStatus("+task.id+","+activeFolder.id+")\" checked></input></li><li>"
                     +task.text
-                    +"</li><li><button onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
-                    +"<li><button onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
+                    +"</li><li><button class=\"textGreen\" onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
+                    +"<li><button class=\"textRed\" onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
                     +"</ul></li>");
             }else{
                 $("#insideFolder").append(
                     "<li><ul class=\"folders1\"><li>"
                     +"<input type=\"checkbox\" name=\"\" onChange=\"changeStatus("+task.id+","+activeFolder.id+")\"></input></li><li>"
                     +task.text
-                    +"</li><li><button onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
-                    +"<li><button onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
+                    +"</li><li><button class=\"textGreen\" onclick=\"editTask("+task.id+","+activeFolder.id+")\">Edit</button></li>"
+                    +"<li><button class=\"textRed\" onclick=\"removeTask("+task.id+","+activeFolder.id+")\">Remove</button></li>"
                     +"</ul></li>");
             }
             
@@ -140,8 +140,8 @@ function loadFolders1(){
         $("#folders").append(
             "<li><ul class=\"folders1\"><li>"
             +folder.name
-            +"</li><li><button onclick=\"viewFolder("+folder.id+")\">View Items</button></li>"
-            +"<li><button onclick=\"removeFolder("+folder.id+")\">Remove</button></li>"
+            +"</li><li><button class=\"textGreen\" onclick=\"viewFolder("+folder.id+")\">View Items</button></li>"
+            +"<li><button class=\"textRed\" onclick=\"removeFolder("+folder.id+")\">Remove</button></li>"
             +"</ul></li>");
         }
     });
@@ -299,4 +299,11 @@ $("#editTask").click(function() {
 $("#cancelEditTask").click(function() { 
     backToInsideFolders();
     $("#taskTextEdit").val("");
+});
+
+$("#logout").click(function() { 
+    toggleViewFolders1Menu(false);
+    toggleViewFolders2Menu(false);
+    toggleViewFolders3Menu(false);
+    toggleLoginMenu(true);
 });
